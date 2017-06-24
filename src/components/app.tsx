@@ -9,6 +9,8 @@ import {
   PrimaryButton
 } from "office-ui-fabric-react/lib/Button";
 
+import Config from "./config";
+
 export interface AppProps {
   title: string;
 }
@@ -32,6 +34,8 @@ export class App extends React.Component<AppProps, AppState> {
     this._signup = this._signup.bind(this);
     this._login = this._login.bind(this);
     this._getErrorMessage = this._getErrorMessage.bind(this);
+
+    firebase.initializeApp(Config);
   }
 
   click = async () => {
