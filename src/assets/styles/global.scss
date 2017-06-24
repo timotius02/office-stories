@@ -1,0 +1,259 @@
+@import 'flex.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+a {
+  text-decoration: none;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.fontSize-xs {
+  font-size: 12px !important;
+}
+
+.header {
+  padding: 10% 5% 5% 5%;
+}
+
+.camera-button {
+  border-radius: 50%;
+  border: 1px solid #333;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 10px;
+  cursor: pointer;
+}
+
+.story-image {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  width: 50px;
+  height: 50px;
+}
+
+.story-image-border {
+  background-color: #666;
+  border-radius: 50%;
+  padding: 1px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 10px;
+  cursor: pointer;
+}
+
+.stories {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.my-stories {
+  margin: 5%;
+
+  & > h1 {
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+  }
+}
+
+.featured-stories {
+  margin: 5%;
+
+  & > h1 {
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+  }
+}
+
+.storylines {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+.storyline-bg {
+  width: 65px;
+  height: 100px;
+  flex: 0 0 auto;
+  // margin: 5px;
+  margin: 0 5px 5px 0;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  & > label {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: #fff;
+    text-align: left;
+    max-width: 60px;
+    text-shadow: 0 1px 0 black;
+  }
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+}
+.modal-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 3%;
+
+  background: #000 no-repeat scroll center;
+
+  background-size: contain;
+}
+
+.modal-header {
+  & > p {
+  }
+}
+
+.progressbar-group {
+  display: flex;
+}
+
+.camera-modal {
+  width: 100%;
+  height: 100%;
+}
+
+.camera-container {
+  width: 100%;
+  height: 100%;
+  background: #000 no-repeat scroll center;
+  overflow: hidden;
+}
+.webcam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-50%) scale(-1, 1);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.webcam-button {
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.webcam-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.webcam-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.editor-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.editor-prev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.editor-send {
+  border-radius: 50%;
+  background-color: #00B294;
+  width: 54px;
+  height: 54px;
+  // border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.login-buttons {
+  display: flex;
+
+  & > button {
+    flex: 1;
+  }
+}
