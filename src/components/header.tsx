@@ -4,7 +4,7 @@ export interface HeaderProps {
   title: string;
 }
 
-export class Header extends React.Component<HeaderProps, any> {
+export class Header extends React.Component<HeaderProps, void> {
   constructor(props, context) {
     super(props, context);
   }

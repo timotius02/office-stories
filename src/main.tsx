@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import { App } from "./components/app";
 import { Progress } from "./components/progress";
 import "./assets/styles/global.scss";
+import config from "./config";
+import * as firebase from "firebase";
 
 (() => {
   const title = "Stories";
@@ -10,6 +12,7 @@ import "./assets/styles/global.scss";
 
   /* Render application after Office initializes */
   Office.initialize = () => {
+    firebase.initializeApp(config);
     render(<App title={title} />, container);
   };
 

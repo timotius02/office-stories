@@ -7,9 +7,14 @@ export interface ProgressBarGroupProps {
   onNext?: { (): void };
 }
 
+export interface ProgressBarGroupState {
+  barWidth: number;
+  activeIndex: number;
+}
+
 export class ProgressBarGroup extends React.Component<
   ProgressBarGroupProps,
-  any
+  ProgressBarGroupState
 > {
   private _progressbars: HTMLDivElement;
   private _activebar: ProgressBar;
@@ -57,7 +62,7 @@ export class ProgressBarGroup extends React.Component<
               <ProgressBar
                 active={true}
                 ref={activeBar => (this._activebar = activeBar)}
-                increment={0.04}
+                increment={0.001}
                 onComplete={this.nextBar}
               />
             </div>
@@ -67,7 +72,7 @@ export class ProgressBarGroup extends React.Component<
             >
               <ProgressBar
                 active={false}
-                increment={0.04}
+                increment={0.0001}
                 onComplete={this.nextBar}
               />
             </div>

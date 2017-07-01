@@ -4,12 +4,12 @@ import { Story } from "./story";
 import { Storyline } from "./storylines";
 import { CameraButton } from "./camerabutton";
 import { TextField, ITextField } from "office-ui-fabric-react/lib/TextField";
+import * as firebase from "firebase";
+
 import {
   DefaultButton,
   PrimaryButton
 } from "office-ui-fabric-react/lib/Button";
-
-import Config from "./config";
 
 export interface AppProps {
   title: string;
@@ -34,8 +34,6 @@ export class App extends React.Component<AppProps, AppState> {
     this._signup = this._signup.bind(this);
     this._login = this._login.bind(this);
     this._getErrorMessage = this._getErrorMessage.bind(this);
-
-    firebase.initializeApp(Config);
   }
 
   click = async () => {
@@ -46,7 +44,7 @@ export class App extends React.Component<AppProps, AppState> {
       await context.sync();
     });
   };
-  private _signup() {
+  private _signup(): void {
     if (!this.state.signup) {
       this.setState({ signup: true });
     } else {
@@ -61,14 +59,14 @@ export class App extends React.Component<AppProps, AppState> {
         })
         .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code;
+          var errorName = error.name;
           var errorMessage = error.message;
 
-          console.error(errorCode, errorMessage);
+          console.error(errorName, errorMessage);
         });
     }
   }
-  private _login() {
+  private _login(): void {
     if (this.state.signup) {
       this.setState({ signup: false });
     } else {
@@ -83,9 +81,9 @@ export class App extends React.Component<AppProps, AppState> {
         })
         .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code;
+          var errorName = error.name;
           var errorMessage = error.message;
-          console.error(errorCode, errorMessage);
+          console.error(errorName, errorMessage);
         });
     }
   }
@@ -93,7 +91,7 @@ export class App extends React.Component<AppProps, AppState> {
     return value === this.password.value ? "" : `The passwords must match. `;
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     const user = firebase.auth().currentUser;
 
     // Check if there's already a logged in user
@@ -110,7 +108,7 @@ export class App extends React.Component<AppProps, AppState> {
             <h1 className="ms-font-xl ">My Stories</h1>
             <div className="stories">
               <CameraButton name="Take Picture" />
-              <Story name="Your Name" />
+              <Story name="My Story" self />
               <Story name="John Doe" />
               <Story name="John Doe" />
               <Story name="Timotius Sitorus" />
@@ -133,7 +131,10 @@ export class App extends React.Component<AppProps, AppState> {
                 name="Timotius Sitorus"
                 image="http://timsitorus.com/blog/public/pic.jpg"
               />
-              <Storyline name="MHacks" />
+              <Storyline
+                name="MHacks"
+                image="https://mhacks.org/36cbd119fd0d11f8c2e6d34e328adf98.png"
+              />
             </div>
           </section>
         </div>
@@ -173,7 +174,6 @@ export class App extends React.Component<AppProps, AppState> {
             <div className="login-buttons">
               <PrimaryButton
                 text="Login"
-                onClick={() => alert("Clicked")}
                 style={{
                   backgroundColor: signup ? "#f4f4f4" : "#00B294",
                   color: signup ? "#333" : "#fff"

@@ -4,11 +4,22 @@ import { Modal } from "office-ui-fabric-react/lib/Modal";
 import Webcam from "./react-webcam";
 import { processPurple, processSepia, processGreyscale } from "./filter";
 
+import * as firebase from "firebase";
+
 export interface CameraButtonProps {
   name: string;
 }
 
-export class CameraButton extends React.Component<CameraButtonProps, any> {
+export interface CameraButtonState {
+  showModal: boolean;
+  editing: boolean;
+  activeFilter: number;
+}
+
+export class CameraButton extends React.Component<
+  CameraButtonProps,
+  CameraButtonState
+> {
   private webcam: Webcam;
   private modalContainer: HTMLDivElement;
   private canvas: HTMLCanvasElement;
@@ -41,7 +52,7 @@ export class CameraButton extends React.Component<CameraButtonProps, any> {
     this._processImage = this._processImage.bind(this);
   }
 
-  private _processImage(image, options: { cover: false }) {
+  private _processImage(image, options = { cover: false }) {
     this.canvas.width = this.modalContainer.offsetWidth;
     this.canvas.height = this.modalContainer.offsetHeight;
 
@@ -149,7 +160,8 @@ export class CameraButton extends React.Component<CameraButtonProps, any> {
   private _send() {
     const user = firebase.auth().currentUser;
     const storageRef = firebase.storage().ref();
-    const imageRef = storageRef.child(user.uid + "/" + Date.now() + ".png");
+    const imageRefName = user.uid + "/" + Date.now() + ".png";
+    const imageRef = storageRef.child(imageRefName);
 
     let dataURL;
 
@@ -169,6 +181,10 @@ export class CameraButton extends React.Component<CameraButtonProps, any> {
     }
 
     imageRef.putString(dataURL, "data_url").then(() => {
+      firebase
+        .database()
+        .ref("users/" + user.uid + "/images")
+        .push(imageRefName);
       this.closeModal();
     });
   }

@@ -8,10 +8,19 @@ export interface ProgressBarProps {
   increment?: number;
   onComplete?: { (): void };
 }
+
+export interface ProgressBarState {
+  showModal: boolean;
+  percentComplete: number;
+  completed: boolean;
+}
 let INTERVAL_DELAY: number;
 let INTERVAL_INCREMENT: number;
 
-export class ProgressBar extends React.Component<ProgressBarProps, any> {
+export class ProgressBar extends React.Component<
+  ProgressBarProps,
+  ProgressBarState
+> {
   private _interval: number;
   private _async: Async;
   constructor(props, context) {

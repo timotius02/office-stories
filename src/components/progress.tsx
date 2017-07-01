@@ -6,7 +6,7 @@ export interface ProgressProps {
   message: string;
 }
 
-export class Progress extends React.Component<ProgressProps, any> {
+export class Progress extends React.Component<ProgressProps, void> {
   constructor(props, context) {
     super(props, context);
   }

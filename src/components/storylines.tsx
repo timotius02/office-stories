@@ -6,7 +6,7 @@ export interface StorylinesProps {
   image: string;
 }
 
-export class Storyline extends React.Component<StorylinesProps, any> {
+export class Storyline extends React.Component<StorylinesProps, void> {
   constructor(props, context) {
     super(props, context);
   }
